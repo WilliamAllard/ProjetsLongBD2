@@ -1,22 +1,18 @@
 {
   "main": {
-    "id": "5482e22a3ddb6e01",
+    "id": "0080e37c96d9a5cf",
     "type": "split",
     "children": [
       {
-        "id": "1ccfc38d589251c1",
+        "id": "aa5cc7d7b273ca72",
         "type": "tabs",
         "children": [
           {
-            "id": "80ae6efa83206aa0",
+            "id": "9420515df728fb4a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Liste des Choses a Faire pour le Projets Longs.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -25,27 +21,25 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "df83987b6754fc69",
+    "id": "480f99e6cb25b3c2",
     "type": "split",
     "children": [
       {
-        "id": "836f9f2b0276eb9a",
+        "id": "258247c1e09f86cd",
         "type": "tabs",
         "children": [
           {
-            "id": "8d21e38e461278b9",
+            "id": "599c6ad603488c63",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "file-explorer",
               "state": {
-                "file": "Liste des Choses a Faire pour le Projets Longs.md",
-                "mode": "source",
-                "source": false
+                "sortOrder": "alphabetical"
               }
             }
           },
           {
-            "id": "5088aefae1881bf5",
+            "id": "f04e35b49f3ccf16",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -60,45 +54,33 @@
             }
           },
           {
-            "id": "6f9d8e0577ac0c32",
+            "id": "07d134a454e5b5f8",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
               "state": {}
             }
-          },
-          {
-            "id": "bcb6f83d84ace66d",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
     "width": 300
   },
   "right": {
-    "id": "2cba41b56939d24e",
+    "id": "b1b089e15607b741",
     "type": "split",
     "children": [
       {
-        "id": "50ee4c4c115b79de",
+        "id": "4cb082e4eabeafba",
         "type": "tabs",
         "children": [
           {
-            "id": "076f4e196ab06313",
+            "id": "b0b71801a13f2817",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Liste des Choses a Faire pour le Projets Longs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,19 +92,18 @@
             }
           },
           {
-            "id": "717952747406f900",
+            "id": "33e6fe0aa56dd6a9",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Liste des Choses a Faire pour le Projets Longs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "be7cc8d4782e9336",
+            "id": "53fa0ae8735112fa",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,20 +114,10 @@
             }
           },
           {
-            "id": "fbab2c92c423f6a6",
+            "id": "80c6b3f9d87868e4",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Liste des Choses a Faire pour le Projets Longs.md"
-              }
-            }
-          },
-          {
-            "id": "7822539b3f0d0c00",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
               "state": {}
             }
           }
@@ -167,21 +138,6 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bcb6f83d84ace66d",
-  "lastOpenFiles": [
-    "Untitled 1.canvas",
-    "Untitled.canvas",
-    "Liste des Choses a Faire pour le Projets Longs.md",
-    "Diagrammes/Liste des Choses Diagrammes.md",
-    "Untitled Diagram.svg",
-    "Base de Donnée/Liste des Choses la Bd.md",
-    "Application Web/Liste des Choses App Web.md",
-    "Base de Donnée",
-    "Application Web",
-    "Diagrammes",
-    "2024-10-06.md",
-    "Projet Longs BD2/Sans titre.md",
-    "Bienvenue.md",
-    "Projet Longs BD2"
-  ]
+  "active": "9420515df728fb4a",
+  "lastOpenFiles": []
 }
