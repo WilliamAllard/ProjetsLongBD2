@@ -1,5 +1,0 @@
-- [ ] Document Excel pour les tables
-- [ ] Diagramme Entité Relations
-- [ ] Diagramme UML
-- [ ] Scripts Tables
-- [ ] 
