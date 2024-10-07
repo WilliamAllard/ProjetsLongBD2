@@ -1,0 +1,177 @@
+{
+  "main": {
+    "id": "5482e22a3ddb6e01",
+    "type": "split",
+    "children": [
+      {
+        "id": "1ccfc38d589251c1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fa35082a53125000",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Liste de Chose a Faire.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "95c22ef1f09e88e8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "97d193a2bb4552ef",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "df83987b6754fc69",
+    "type": "split",
+    "children": [
+      {
+        "id": "836f9f2b0276eb9a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d21e38e461278b9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "5088aefae1881bf5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6f9d8e0577ac0c32",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2cba41b56939d24e",
+    "type": "split",
+    "children": [
+      {
+        "id": "50ee4c4c115b79de",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "076f4e196ab06313",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Liste de Chose a Faire.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "717952747406f900",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Liste de Chose a Faire.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "be7cc8d4782e9336",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "fbab2c92c423f6a6",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Liste de Chose a Faire.md"
+              }
+            }
+          },
+          {
+            "id": "7822539b3f0d0c00",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false
+    }
+  },
+  "active": "fa35082a53125000",
+  "lastOpenFiles": [
+    "Liste de Chose a Faire.md",
+    "Bienvenue.md",
+    "Projet Longs BD2"
+  ]
+}
