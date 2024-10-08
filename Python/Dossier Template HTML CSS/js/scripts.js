@@ -7,7 +7,7 @@ let messageError = "";
 
 // Variable Client
 const nomClient = document.getElementById('nomClient').value;
-const cellClient = document.getElementById('cellClient').value;
+let cellClient = document.getElementById('cellClient');
 const adresseClient = document.getElementById('adresseClient').value;
 const villeClient = document.getElementById('villeClient').value;
 const provinceClient = document.getElementById('provinceClient').value;
@@ -32,21 +32,19 @@ function fermerPopup() {
 function consoleTest(){
     console.log(verifierTelephone());
     console.log(verifierCodePostal());
-    console.log(verifierGarnitures());
+    console.log(minMaxGarniture());
+
+    const regex = /^(\(\+[0-9]{2}\)\s?)?([0-9]{3}[-\s]?)?([0-9]{3})[-\s]?([0-9]{4})(\/[0-9]{4})?$/;
+    console.log(regex.test(cellClient))
+    console.log(cellClient)
 }
+
 
 // Vérification globale
 function verificationGlobal() {
     messageError = "";
 
-    if (verifierTelephone() && verifierCodePostal() && verifierGarnitures() ) {
-        afficherResume();
-        return true;
-    } else {
-        errorElement.innerHTML = messageError;
-        errorElement.style.display = 'block';
-        return false;
-    }
+    
 }
 
 function verifierTelephone() {
@@ -73,16 +71,19 @@ function verifierCodePostal() {
     }
 }
 
-function verifierGarnitures() {
-    if (garnitures.length === 0) {
-        messageError += "Veuillez sélectionner au moins une garniture. ";
-        return false;
-    }
+function minMaxGarniture(){
     if (garnitures.length > 4) {
-        messageError += "Vous pouvez sélectionner un maximum de 4 garnitures. ";
+        messageError += "Vous ne pouvez sélectionner que 4 garnitures au maximum. ";
+        errorElement.style.display = 'block';
         return false;
+    } else if (garnitures.length < 0) {
+        messageError += "Vous devez sélectionner au moins 0 garniture. ";
+        errorElement.style.display = 'block';
+        return false;
+    } else {
+        errorElement.style.display = 'none';
+        return true;
     }
-    return true;
 }
 
 function afficherResume() {
@@ -136,3 +137,20 @@ function afficherListeLivraisons() {
         listeLivraisons.appendChild(li);
     });
 }
+
+// DropDown Withoud Control Source : https://codepen.io/gmkhussain/pen/ozwwPw
+
+const multiSelectWithoutCtrl = ( elemSelector ) => {
+    let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+    options.forEach(function (element) {
+        element.addEventListener("mousedown", 
+            function (e) {
+                e.preventDefault();
+                element.parentElement.focus();
+                this.selected = !this.selected;
+                return false;
+            }, false );
+    });
+}
+  
+multiSelectWithoutCtrl('#garnitures')
