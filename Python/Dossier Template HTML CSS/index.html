@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/scripts.js"></script>
 </head>
-<body onchange="consoleTest()">
+<body>
     <header>
         <h1>Pizza Delizia</h1>
         <nav>
@@ -26,26 +26,26 @@
                 
                 <!-- Nom du client -->
                 <label for="nomClient">Votre nom:</label>
-                <input type="text" id="nomClient" name="nomClient" required autofocus>
+                <input type="text" id="nomClient" name="nomClient" maxlength="50" required autofocus placeholder="Mathis Tremblay">
 
                 <label for="cellClient">Numéro de Téléphone:</label>
                 <input type="tel" id="cellClient" name="cellClient" required placeholder="999-999-9999">
 
                 <!-- Adresse de livraison -->
                 <label for="adresseClient">Adresse de livraison:</label>
-                <input type="text" id="adresseClient" name="adresseClient" required>
+                <input type="text" id="adresseClient" name="adresseClient" maxlength="255" required placeholder="123 rue du Plaisire">
 
                 <!-- Adresse de livraison -->
                 <label for="villeClient">Ville:</label>
-                <input type="text" id="villeClient" name="villeClient" required placeholder="Québec">
+                <input type="text" id="villeClient" name="villeClient" maxlength="168" required placeholder="Québec">
             
                 <!-- Province -->
                 <label for="provinceClient">Province:</label>
-                <input type="text" id="provinceClient" name="provinceClient" required placeholder="Québec">
+                <input type="text" id="provinceClient" name="provinceClient" maxlength="50" required placeholder="Québec">
             
                 <!-- Pays -->
                 <label for="paysClient">Pays:</label>
-                <input type="text" id="paysClient" name="paysClient" required placeholder="Canada">
+                <input type="text" id="paysClient" name="paysClient" maxlength="50" required placeholder="Canada">
             
                 <!-- Code postal -->
                 <label for="codePostalClient">Code postal:</label>

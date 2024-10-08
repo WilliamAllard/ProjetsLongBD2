@@ -116,7 +116,6 @@ footer {
     bottom: 0;
 }
 
-/* Ajouter ce CSS à styles.css */
 .popup {
     position: fixed;
     top: 50%;
@@ -142,7 +141,6 @@ footer {
     display: none;
 }
 
-/* Ajouter ce CSS à styles.css */
 .error {
     color: red;
     font-weight: bold;
