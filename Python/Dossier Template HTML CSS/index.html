@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/scripts.js"></script>
 </head>
-<body>
+<body onchange="consoleTest()">
     <header>
         <h1>Pizza Delizia</h1>
         <nav>
@@ -29,8 +29,8 @@
                 <input type="text" id="nomClient" name="nomClient" required autofocus>
 
                 <label for="cellClient">Numéro de Téléphone:</label>
-                <input type="tel" id="cellClient" name="cellClient" required pattern="/^(\(\+[0-9]{2}\)\s?)?([0-9]{3}[-\s]?)?([0-9]{3})[-\s]?([0-9]{4})(\/[0-9]{4})?$/" placeholder="999-999-9999">
-            
+                <input type="tel" id="cellClient" name="cellClient" required placeholder="999-999-9999">
+
                 <!-- Adresse de livraison -->
                 <label for="adresseClient">Adresse de livraison:</label>
                 <input type="text" id="adresseClient" name="adresseClient" required>
@@ -49,8 +49,8 @@
             
                 <!-- Code postal -->
                 <label for="codePostalClient">Code postal:</label>
-                <input type="text" id="codePostalClient" name="codePostalClient" required pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d" placeholder="A1A 1A1">
-            
+                <input type="text" id="codePostalClient" name="codePostalClient" required placeholder="A1A 1A1">
+
                 <h3>Personnalisation de la pizza</h3>
             
                 <!-- Taille de la pizza -->
@@ -91,15 +91,19 @@
                     <option value="poivrons">Poivrons</option>
                     <option value="oignons">Oignons</option>
                 </select>
-            
-                <button type="button" onclick="afficherResume()">Afficher le résumé de la commande</button>
+
+                <span id="error" class="error"></span>
+                <button type="button" onclick="verificationGlobal()">Afficher le résumé de la commande</button>
             </form>
 
-            <div id="resumeCommande" style="display: none;">
-                <h3>Résumé de la commande</h3>
-                <p id="detailsCommande"></p>
-                <button onclick="confirmerCommande()">Confirmer la commande</button>
-            </div>
+            <!-- Ajouter ce HTML à index.html juste avant la balise -->
+            <div id="popupOverlay" class="popup-overlay"></div>
+                <div id="resumeCommande" class="popup">
+                    <h3>Résumé de la commande</h3>
+                    <p id="detailsCommande"></p>
+                    <button onclick="confirmerCommande()">Confirmer la commande</button>
+                    <button onclick="fermerPopup()">Fermer</button>
+                </div>
         </section>
 
         <section id="livraison">
