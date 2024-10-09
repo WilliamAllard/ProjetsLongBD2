@@ -3,7 +3,7 @@
  * @author William Allard <william2006allard@gmail.com>
  * Note : Aide de ChatGPT donc Beaucoup de code vien de lui 
  */
-// Variable Commande
+// Variable pour entroposée la Commande
 let commandes = [];
 
 // Variable Erreur
