@@ -193,6 +193,9 @@ pyrightconfig.json
 .history
 .ionide
 
+#Ignore bkp
+*.bkp
+
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
