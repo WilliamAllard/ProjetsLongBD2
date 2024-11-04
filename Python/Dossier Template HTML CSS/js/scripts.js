@@ -23,7 +23,6 @@ function getClientValues() {
         provinceClient: document.getElementById('provinceClient').value,
         paysClient: document.getElementById('paysClient').value,
         codePostalClient: document.getElementById('codePostalClient').value,
-        taillePizza: document.getElementById('taillePizza').value,
         typeCroute: document.getElementById('typeCroute').value,
         choixSauce: document.getElementById('choixSauce').value,
         garnitures: Array.from(document.getElementById('garnitures').selectedOptions).map(option => option.text)
@@ -141,7 +140,6 @@ function afficherResume() {
         Téléphone: ${cellClient}<br>
         Adresse: ${adresseClient}, ${villeClient}, ${provinceClient}, ${paysClient}<br>
         Code postal: ${codePostalClient}<br>
-        Taille de pizza: ${taillePizza}<br>
         Croûte: ${typeCroute}<br>
         Sauce: ${choixSauce}<br>
         Garnitures: ${garnitures.length > 0 ? garnitures.join(', ') : 'Aucune'}
@@ -156,7 +154,7 @@ function afficherResume() {
 function confirmerCommande() {
     const {
         nomClient, adresseClient, provinceClient, paysClient,
-        codePostalClient, taillePizza, typeCroute, choixSauce, garnitures
+        codePostalClient, typeCroute, choixSauce, garnitures
     } = getClientValues();
 
     const commande = {
@@ -182,30 +180,30 @@ function resetForm() {
     document.getElementById('formCommande').reset();
 }
 
-/**
- * compléter une livraison
- * @param {*} index est l'index de la commande
- */
-function completerLivraison(index) {
-    commandes.splice(index, 1);
-    afficherListeLivraisons();
-}
-/**
- * Affiche les commandes en cours de livraison
- */
-function afficherListeLivraisons() {
-    const listeLivraisons = document.getElementById('listeLivraisons');
-    listeLivraisons.innerHTML = ''; // Réinitialiser la liste
+// /**
+//  * compléter une livraison
+//  * @param {*} index est l'index de la commande
+//  */
+// function completerLivraison(index) {
+//     commandes.splice(index, 1);
+//     afficherListeLivraisons();
+// }
+// /**
+//  * Affiche les commandes en cours de livraison
+//  */
+// function afficherListeLivraisons() {
+//     const listeLivraisons = document.getElementById('listeLivraisons');
+//     listeLivraisons.innerHTML = ''; // Réinitialiser la liste
 
-    commandes.forEach((commande, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <strong>${commande.nomClient}</strong> - ${commande.taillePizza} pizza (${commande.typeCroute}, ${commande.choixSauce}) avec ${commande.garnitures.join(', ')}
-            <button onclick="completerLivraison(${index})">Compléter la livraison</button>
-        `;
-        listeLivraisons.appendChild(li);
-    });
-}
+//     commandes.forEach((commande, index) => {
+//         const li = document.createElement('li');
+//         li.innerHTML = `
+//             <strong>${commande.nomClient}</strong> - ${commande.taillePizza} pizza (${commande.typeCroute}, ${commande.choixSauce}) avec ${commande.garnitures.join(', ')}
+//             <button onclick="completerLivraison(${index})">Compléter la livraison</button>
+//         `;
+//         listeLivraisons.appendChild(li);
+//     });
+// }
 
 /**
  * DropDown Without CTLR
