@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de données - Projets Longs William Allard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/scripts.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Pizza Delizia</h1>
+        <nav>
+            <ul>
+                <li><a href="#commande">Nouvelle commande</a></li>
+                <li><a href="#livraison">Livraisons en attente</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="commande">
+            <h2>Nouvelle commande</h2>
+            <form id="formCommande">
+                <h3>Informations client</h3>
+                
+                <!-- Nom du client -->
+                <label for="nomClient">Votre nom:</label>
+                <input type="text" id="nomClient" name="nomClient" maxlength="50" required autofocus placeholder="Mathis Tremblay">
+
+                <label for="cellClient">Numéro de Téléphone:</label>
+                <input type="tel" id="cellClient" name="cellClient" required placeholder="999-999-9999">
+
+                <!-- Adresse de livraison -->
+                <label for="adresseClient">Adresse de livraison:</label>
+                <input type="text" id="adresseClient" name="adresseClient" maxlength="255" required placeholder="123 rue du Plaisire">
+
+                <!-- Adresse de livraison -->
+                <label for="villeClient">Ville:</label>
+                <input type="text" id="villeClient" name="villeClient" maxlength="168" required placeholder="Québec">
+            
+                <!-- Province -->
+                <label for="provinceClient">Province:</label>
+                <input type="text" id="provinceClient" name="provinceClient" maxlength="50" required placeholder="Québec">
+            
+                <!-- Pays -->
+                <label for="paysClient">Pays:</label>
+                <input type="text" id="paysClient" name="paysClient" maxlength="50" required placeholder="Canada">
+            
+                <!-- Code postal -->
+                <label for="codePostalClient">Code postal:</label>
+                <input type="text" id="codePostalClient" name="codePostalClient" required placeholder="A1A 1A1">
+
+                <h3>Personnalisation de la pizza</h3>
+            
+                <!-- Types de croûtes -->
+                <label for="typeCroute">Type de croûte:</label>
+                <select id="typeCroute" name="typeCroute">
+                    
+                </select>
+            
+                <!-- Choix de sauces -->
+                <label for="choixSauce">Choix de la sauce:</label>
+                <select id="choixSauce" name="choixSauce" >
+                    
+                </select>
+            
+                <!-- Choix de garnitures (maximum 4) -->
+                {for garniture in garnitures}
+                <label for="garnitures">Choix des garnitures (maximum 4):</label>
+                <select id="garnitures" name="garnitures" multiple>x
+                    
+                </select>
+
+                <span id="error" class="error"></span>
+                <button type="button">Confirmer la Conmmandes</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Pizza Delizia - William Allard - Made with ChatGPT</p>
+    </footer>
+</body>
+</html>

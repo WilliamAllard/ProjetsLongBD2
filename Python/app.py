@@ -1,7 +1,9 @@
+from flask import Flask, render_template
 import os
 from dotenv import load_dotenv
 import mysql.connector
 
+app = Flask(__name__)
 
 # Charge les variables d'environnement à partir du fichier .env
 load_dotenv()
@@ -28,3 +30,14 @@ if connexion.is_connected():
     print("Connexion réussie à la base de données")
 else:
     print("Échec de la connexion à la base de données")
+    
+@app.route('/')
+def index():
+    cursor = connexion.cursor()
+    cursor.execute("SELECT count(id) FROM Commandes_Attentes;")
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('index.html', data=data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
