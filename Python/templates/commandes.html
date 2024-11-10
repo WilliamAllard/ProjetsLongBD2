@@ -52,11 +52,13 @@
                 <input type="text" id="codePostalClient" name="codePostalClient" required placeholder="A1A 1A1">
 
                 <h3>Personnalisation de la pizza</h3>
-            
+            {%for croutes in croutes%}
                 <!-- Types de croûtes -->
                 <label for="typeCroute">Type de croûte:</label>
                 <select id="typeCroute" name="typeCroute">
-                    
+                    {%for croutes in croutes%}
+                        <option value="{{croutes.id}}">{{croutes.nom}}</option>
+                    {%endfor%}
                 </select>
             
                 <!-- Choix de sauces -->
@@ -66,9 +68,8 @@
                 </select>
             
                 <!-- Choix de garnitures (maximum 4) -->
-                {for garniture in garnitures}
                 <label for="garnitures">Choix des garnitures (maximum 4):</label>
-                <select id="garnitures" name="garnitures" multiple>x
+                <select id="garnitures" name="garnitures" multiple>
                     
                 </select>
 

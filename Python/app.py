@@ -31,6 +31,7 @@ if connexion.is_connected():
 else:
     print("Échec de la connexion à la base de données")
     
+
 @app.route('/')
 def index():
     cursor = connexion.cursor()
@@ -38,6 +39,18 @@ def index():
     data = cursor.fetchall()
     cursor.close()
     return render_template('index.html', data=data)
+
+@app.route('/commandes')
+def commandes():
+    # Croute 
+    try: 
+        cursor = connexion.cursor()
+        cursor.execute("SELECT id, type_croute FROM Croutes;")
+        croute = cursor.fetchall()
+        cursor.close()
+    except mysql.connector.Error as erreur:
+        print(erreur)
+    return render_template('commandes.html', croute=croute)
 
 if __name__ == '__main__':
     app.run(debug=True)
