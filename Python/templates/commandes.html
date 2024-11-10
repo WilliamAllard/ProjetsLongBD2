@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base de données - Projets Longs William Allard</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/scripts.js"></script>
+    <script defer src="{{url_for('static', filename='DropDown.js')}}"></script>
 </head>
+<style>
+    body {
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+</style>    
 <body>
     <header>
         <h1>Pizza Delizia</h1>
         <nav>
             <ul>
-                <li><a href="#commande">Nouvelle commande</a></li>
-                <li><a href="#livraison">Livraisons en attente</a></li>
+                <li><a href="/">Acceuil</a></li>
             </ul>
         </nav>
     </header>
@@ -52,25 +59,28 @@
                 <input type="text" id="codePostalClient" name="codePostalClient" required placeholder="A1A 1A1">
 
                 <h3>Personnalisation de la pizza</h3>
-            {%for croutes in croutes%}
                 <!-- Types de croûtes -->
                 <label for="typeCroute">Type de croûte:</label>
                 <select id="typeCroute" name="typeCroute">
-                    {%for croutes in croutes%}
-                        <option value="{{croutes.id}}">{{croutes.nom}}</option>
+                    {%for id , type_croute in croutes%}
+                        <option value="{{ id }}">{{ type_croute }}</option>
                     {%endfor%}
                 </select>
             
                 <!-- Choix de sauces -->
                 <label for="choixSauce">Choix de la sauce:</label>
                 <select id="choixSauce" name="choixSauce" >
-                    
+                    {%for id , type_sauce in sauces%}
+                        <option value="{{ id }}">{{ type_sauce }}</option>
+                    {%endfor%}
                 </select>
             
                 <!-- Choix de garnitures (maximum 4) -->
                 <label for="garnitures">Choix des garnitures (maximum 4):</label>
                 <select id="garnitures" name="garnitures" multiple>
-                    
+                    {%for id , type_garniture in garnitures%}
+                        <option value="{{ id }}">{{ type_garniture }}</option>
+                    {%endfor%}x
                 </select>
 
                 <span id="error" class="error"></span>

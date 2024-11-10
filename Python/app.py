@@ -36,7 +36,7 @@ else:
 def index():
     cursor = connexion.cursor()
     cursor.execute("SELECT count(id) FROM Commandes_Attentes;")
-    data = cursor.fetchall()
+    data = cursor.fetchone()
     cursor.close()
     return render_template('index.html', data=data)
 
@@ -46,11 +46,29 @@ def commandes():
     try: 
         cursor = connexion.cursor()
         cursor.execute("SELECT id, type_croute FROM Croutes;")
-        croute = cursor.fetchall()
+        croutes = cursor.fetchall()
         cursor.close()
     except mysql.connector.Error as erreur:
         print(erreur)
-    return render_template('commandes.html', croute=croute)
+        
+    # Sauces
+    try: 
+        cursor = connexion.cursor()
+        cursor.execute("SELECT id, type_sauce FROM Sauces;")
+        sauces = cursor.fetchall()
+        cursor.close()
+    except mysql.connector.Error as erreur:
+        print(erreur)
+        
+    # Garnitures
+    try: 
+        cursor = connexion.cursor()
+        cursor.execute("SELECT id, type_garniture FROM Garnitures;")
+        garnitures = cursor.fetchall()
+        cursor.close()
+    except mysql.connector.Error as erreur:
+        print(erreur)
+    return render_template('commandes.html', croutes=croutes, sauces=sauces, garnitures=garnitures)
 
 if __name__ == '__main__':
     app.run(debug=True)
