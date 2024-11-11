@@ -28,7 +28,7 @@
     <main>
         <section id="commande">
             <h2>Nouvelle commande</h2>
-            <form id="formCommande">
+            <form id="formCommande" method="POST">
                 <h3>Informations client</h3>
                 
                 <!-- Nom du client -->
@@ -68,23 +68,23 @@
                 </select>
             
                 <!-- Choix de sauces -->
-                <label for="choixSauce">Choix de la sauce:</label>
-                <select id="choixSauce" name="choixSauce" >
+                <label for="typeSauce">Choix de la sauce:</label>
+                <select id="typeSauce" name="typeSauce" >
                     {%for id , type_sauce in sauces%}
                         <option value="{{ id }}">{{ type_sauce }}</option>
                     {%endfor%}
                 </select>
             
                 <!-- Choix de garnitures (maximum 4) -->
-                <label for="garnitures">Choix des garnitures (maximum 4):</label>
-                <select id="garnitures" name="garnitures" multiple>
+                <label for="typeGarnitures">Choix des garnitures (maximum 4):</label>
+                <select id="typeGarnitures" name="typeGarnitures" multiple>
                     {%for id , type_garniture in garnitures%}
                         <option value="{{ id }}">{{ type_garniture }}</option>
                     {%endfor%}x
                 </select>
 
                 <span id="error" class="error"></span>
-                <button type="button">Confirmer la Conmmandes</button>
+                <button type="submit">Confirmer la Conmmandes</button>
             </form>
         </section>
     </main>
