@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de données - Projets Longs William Allard</title>
-    <script defer src="{{url_for('static', filename='DropDown.js')}}"></script>
+    <title>Commande Pizza</title>
+    <script defer src="{{url_for('static', filename='script.js')}}"></script>
 </head>
 <style>
-    body {
-    }
     
     form {
         display: flex;
         flex-direction: column;
     }
-</style>    
+
+    .buttonConfirmerHidden{
+        display: none;
+    }
+
+    .buttonConfirmerPresent{
+        display: block;
+    }
+</style>
 <body>
     <header>
         <h1>Pizza Delizia</h1>
@@ -28,7 +34,7 @@
     <main>
         <section id="commande">
             <h2>Nouvelle commande</h2>
-            <form id="formCommande" method="POST">
+            <form id="formCommande" action="/insertCommandes" method="POST">
                 <h3>Informations client</h3>
                 
                 <!-- Nom du client -->
@@ -49,10 +55,6 @@
                 <!-- Province -->
                 <label for="provinceClient">Province:</label>
                 <input type="text" id="provinceClient" name="provinceClient" maxlength="50" required placeholder="Québec">
-            
-                <!-- Pays -->
-                <label for="paysClient">Pays:</label>
-                <input type="text" id="paysClient" name="paysClient" maxlength="50" required placeholder="Canada">
             
                 <!-- Code postal -->
                 <label for="codePostalClient">Code postal:</label>
@@ -83,14 +85,12 @@
                     {%endfor%}x
                 </select>
 
-                <span id="error" class="error"></span>
-                <button type="submit">Confirmer la Conmmandes</button>
+                <button type="button" id="buttonResumer" onclick="afficherResumerCommande()">Résumé de la commande</button>
+                <p>Résumé de la commande : <span id="resumer"></span></p>
+
+                <button type="submit" id="buttonConfirmer" class="buttonConfirmerHidden">Confirmer la Conmmandes</button>
             </form>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Pizza Delizia - William Allard - Made with ChatGPT</p>
-    </footer>
 </body>
 </html>

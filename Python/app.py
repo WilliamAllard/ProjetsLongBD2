@@ -6,6 +6,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+erreurForm = ""
+
 # Charge les variables d'environnement à partir du fichier .env
 load_dotenv()
 
@@ -68,10 +70,14 @@ def commandes():
         garnitures = cursor.fetchall()
         cursor.close()
     except mysql.connector.Error as erreur:
-        print(erreur)
-        
-        
-    # Formulaire de commande
+        print(erreur)      
+                
+    return render_template('commandes.html', croutes=croutes, sauces=sauces, garnitures=garnitures)
+
+
+@app.route('/insertCommandes', methods=['POST', 'GET'])
+def insertCommandes():
+        # Formulaire de commande
     
     error = ""
 
@@ -98,7 +104,7 @@ def commandes():
         if len(SelectGarnitures) > 4:
             error += "Veuillez sélectionner un maximum de 4 garnitures"
         
-        if error != "":
+        if error == "":
             # Insert Client
             
             clientInformation = (nomClient, cellClient, adresseClient, villeClient, provinceClient, codePostalClient)
@@ -144,18 +150,68 @@ def commandes():
                 connexion.commit()
                 idCommandeInsert = cursor.lastrowid
                 cursor.close()
-                return redirect('/confirmation')
             except mysql.connector.Error as erreur:
                 print(erreur)
         else:
-            print(error)        
-                
-    return render_template('commandes.html', croutes=croutes, sauces=sauces, garnitures=garnitures)
-
+            print(error)
+    error = erreurForm
+    
+    return redirect('/confirmation')
+    
 
 @app.route('/confirmation')
 def confirmation():
-    return "Commande confirmée !"
+    confirmer = "Commande confirmée !"
+    return render_template('confirmation.html', confirmer = confirmer)
+
+@app.route('/attente')
+def detail():
+    
+    try:
+        cursor = connexion.cursor()
+        cursor.execute(""" 
+            SELECT 
+                Commandes.id as id_commande,
+                Clients.nom AS nom_client,
+                CONCAT(Clients.adresse,', ',Clients.ville,', ',Clients.province,', ',Clients.code_postal) AS adresse_client,
+                Commandes.date AS date_commande,
+                Croutes.type_croute AS croute,
+                Sauces.type_sauce AS sauce,
+                GROUP_CONCAT(Garnitures.type_garniture ORDER BY Garnitures.type_garniture SEPARATOR ', ') AS garnitures
+            FROM
+                Commandes_Attentes
+                    INNER JOIN Commandes ON Commandes_Attentes.id_commande = Commandes.id
+                    INNER JOIN Clients ON Commandes.id_client = Clients.id
+                    INNER JOIN Croutes ON Commandes.id_croute = Croutes.id
+                    INNER JOIN Sauces ON Commandes.id_sauce = Sauces.id
+                    INNER JOIN Garnitures_Commandes ON Commandes.id = Garnitures_Commandes.id_commande
+                    INNER JOIN Garnitures ON Garnitures_Commandes.id_garniture = Garnitures.id
+            GROUP BY Commandes_Attentes.id , Commandes.id , Clients.nom , adresse_client , Commandes.date , Croutes.type_croute , Sauces.type_sauce
+            ORDER BY Commandes_Attentes.date;
+        """)
+        data = cursor.fetchall()
+        cursor.close
+    except mysql.connector.Error as erreur:
+        print(erreur)
+    
+    
+    return render_template('attente.html', data = data)
+
+
+@app.route('/supprimer_commande', methods=['POST'])
+def supprimer_commande():
+    id_commande = request.form.get('id_commande')
+    
+    try:
+        cursor = connexion.cursor()
+        cursor.execute("DELETE FROM Commandes_Attentes WHERE id_commande = %s", (id_commande,))
+        connexion.commit()
+        cursor.close()
+
+        return redirect(url_for('detail')) 
+    except mysql.connector.Error as erreur:
+        print(erreur)
+        return redirect(url_for('detail'))
 
 if __name__ == '__main__':
     app.run(debug=True)

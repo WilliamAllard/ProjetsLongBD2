@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande en Attente</title>
+</head>
+<style>
+    table, thend, tr, th, tbody, td{
+        border:1px solid black;
+        width: auto;
+    }
+</style>
+<body>
+    <h1>Pizza Delizia</h1>
+    
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Date</th>
+            <th>Croute</th>
+            <th>Sauce</th>
+            <th>Garnitures</th>
+            <th>Compléter</th>
+        </tr>
+        <tbody>
+            {% for id_commande ,nom_client, adresse_client, date_commande, croute, sauce, garnitures in data %}
+            <tr>
+                <td>{{ nom_client }}</td>
+                <td>{{ adresse_client }}</td>
+                <td>{{ date_commande }}</td>
+                <td>{{ croute }}</td>
+                <td>{{ sauce }}</td>
+                <td>{{ garnitures }}</td>
+                <td>
+                    <form action="{{ url_for('supprimer_commande') }}" method="POST">
+                        <input type="hidden" name="id_commande" value="{{ id_commande }}">
+                        <button type="submit">Compléter</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">Retour a l'acceuil</a>
+</body>
+</html>
