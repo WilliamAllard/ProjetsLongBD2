@@ -123,10 +123,13 @@ def insertCommandes():
         if nomClient == "" or cellClient == "" or adresseClient == "" or villeClient == "" or provinceClient == "" or codePostalClient == "":
             error += "Veuillez remplir tous les champs"
         
-        # Vérifier Type Garniture Max 4
+        # Vérifier Type Garniture Max 4 et min 1
         
         if len(SelectGarnitures) > 4:
             error += "Veuillez sélectionner un maximum de 4 garnitures"
+            
+        if len(SelectGarnitures) < 1:
+            error += "Veuillez sélectionner au moins une garniture"
         
         if error == "":
             # Insert Client
