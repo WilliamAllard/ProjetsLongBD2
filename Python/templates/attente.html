@@ -14,6 +14,9 @@
 <body>
     <h1>Pizza Delizia</h1>
     
+    {% if is_empty %}
+    <p>Aucune Commande en Attente</p>
+    {% else %}
     <table>
         <tr>
             <th>Nom</th>
@@ -43,6 +46,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 
     <a href="/">Retour a l'acceuil</a>
 </body>

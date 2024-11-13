@@ -1,3 +1,0 @@
-- [ ] [[Liste des Choses Diagrammes|Finir le Diagramme]]
-- [ ] Faire le Script de Tables
-- [ ] [[Déclencheur|Faire le Déclencheur]]

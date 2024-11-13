@@ -1,3 +1,0 @@
-- [ ] Faire le Excel
-- [ ] Faire le Diagramme Entité Relation
-- [ ] Faire le Diagramme UML

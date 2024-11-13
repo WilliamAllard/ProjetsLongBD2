@@ -1,3 +1,16 @@
+"""
+Fichier Principal pour gérer les commandes, affichage des commande en Attente et la Completion des Commandes
+
+Le fichier s'occupe de la connection avec la Base de Donnée et l'interface web avec Flask
+
+Dépendances:
+    - Flask
+    - mysql-connector-python
+    - dotenv
+    
+Auteur: William Allard
+Date: Novembre 2024
+"""
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from dotenv import load_dotenv
@@ -34,17 +47,25 @@ if connexion.is_connected():
 else:
     print("Échec de la connexion à la base de données")
     
-
 @app.route('/')
 def index():
-    cursor = connexion.cursor()
-    cursor.execute("SELECT count(id) FROM Commandes_Attentes;")
-    data = cursor.fetchone()
-    cursor.close()
+    """
+    Fonction Principal qui affiche le menu pour commander et Afficher le detail des commande
+    """
+    try:
+        cursor = connexion.cursor()
+        cursor.execute("SELECT count(id) FROM Commandes_Attentes;")
+        data = cursor.fetchone()
+        cursor.close()
+    except mysql.connector.Error as erreur:
+        print(erreur)
     return render_template('index.html', data=data)
 
 @app.route('/commandes', methods=['GET', 'POST'])
 def commandes():
+    """
+    Fonction pour affiche les Croutes, les Sauces et les Garnitures dans le templates pour la commandes
+    """
     # Croute 
     try: 
         cursor = connexion.cursor()
@@ -74,11 +95,14 @@ def commandes():
                 
     return render_template('commandes.html', croutes=croutes, sauces=sauces, garnitures=garnitures)
 
-
 @app.route('/insertCommandes', methods=['POST', 'GET'])
 def insertCommandes():
-        # Formulaire de commande
+    """
+    Fonction qui s'occupe de la vérification et l'insertion des commandes dans la base de donner 
+    (L'insertion des commandes en Attente se fait via un Déclancheur)
+    """
     
+    # Erreur
     error = ""
 
         
@@ -148,7 +172,6 @@ def insertCommandes():
                     VALUES (%s, %s)
                 """, garnituresInformation)
                 connexion.commit()
-                idCommandeInsert = cursor.lastrowid
                 cursor.close()
             except mysql.connector.Error as erreur:
                 print(erreur)
@@ -156,16 +179,52 @@ def insertCommandes():
             print(error)
     error = erreurForm
     
-    return redirect('/confirmation')
+    return redirect(url_for('confirmation', idCommandeInsert=idCommandeInsert))
     
 
 @app.route('/confirmation')
 def confirmation():
+    """
+    Affiche les details de la commandes passée
+    """
+    idCommande = request.args.get('idCommandeInsert')
     confirmer = "Commande confirmée !"
-    return render_template('confirmation.html', confirmer = confirmer)
+    
+    try:
+        cursor = connexion.cursor()
+        query = """ 
+            SELECT 
+                Clients.nom AS nom_client,
+                CONCAT(Clients.adresse,', ',Clients.ville,', ',Clients.province,', ',Clients.code_postal) AS adresse_client,
+                Commandes.date AS date_commande,
+                Croutes.type_croute AS croute,
+                Sauces.type_sauce AS sauce,
+                GROUP_CONCAT(Garnitures.type_garniture ORDER BY Garnitures.type_garniture SEPARATOR ', ') AS garnitures
+            FROM
+                Commandes_Attentes
+                    INNER JOIN Commandes ON Commandes_Attentes.id_commande = Commandes.id
+                    INNER JOIN Clients ON Commandes.id_client = Clients.id
+                    INNER JOIN Croutes ON Commandes.id_croute = Croutes.id
+                    INNER JOIN Sauces ON Commandes.id_sauce = Sauces.id
+                    INNER JOIN Garnitures_Commandes ON Commandes.id = Garnitures_Commandes.id_commande
+                    INNER JOIN Garnitures ON Garnitures_Commandes.id_garniture = Garnitures.id
+			WHERE Commandes.id = %s
+            GROUP BY Commandes_Attentes.id , Commandes.id , Clients.nom , adresse_client , Commandes.date , Croutes.type_croute , Sauces.type_sauce
+            ORDER BY Commandes_Attentes.date;
+        """
+        cursor.execute(query,(idCommande,))
+        data = cursor.fetchall()
+        cursor.close
+    except mysql.connector.Error as erreur:
+        print(erreur)
+    
+    return render_template('confirmation.html', confirmer = confirmer, idCommande=idCommande, data=data)
 
 @app.route('/attente')
 def detail():
+    """
+    Voici les commandes en attente 
+    """
     
     try:
         cursor = connexion.cursor()
@@ -193,18 +252,23 @@ def detail():
         cursor.close
     except mysql.connector.Error as erreur:
         print(erreur)
+        data = []
     
-    
-    return render_template('attente.html', data = data)
+    is_empty = len(data) == 0
+    return render_template('attente.html', data = data, is_empty=is_empty)
 
 
 @app.route('/supprimer_commande', methods=['POST'])
 def supprimer_commande():
+    """
+    Permet de Supprimer les commandes en Attente
+    """
     id_commande = request.form.get('id_commande')
     
     try:
         cursor = connexion.cursor()
         cursor.execute("DELETE FROM Commandes_Attentes WHERE id_commande = %s", (id_commande,))
+        cursor.execute("DELETE FROM Commandes WHERE id = %s", (id_commande,))
         connexion.commit()
         cursor.close()
 
